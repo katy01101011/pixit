@@ -1,0 +1,7 @@
+#canvas {
+    border: .5px solid rgb(156, 156, 156);
+}
+
+.modal {
+    z-index: 10000;
+}
