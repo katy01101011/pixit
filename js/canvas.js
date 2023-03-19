@@ -47,36 +47,49 @@ canvas.addEventListener('touchend', fineDisegno);
 canvas.addEventListener('mouseleave', fineDisegno);
 
 // Definisco il periodi del mouse schiacciato
-function inizioDisegno() {
+function inizioDisegno(event) {
+    event.preventDefault();
   disegno = true;
 }
-function fineDisegno() {
+function fineDisegno(event) {
+    event.preventDefault();
   disegno = false;
 }
 
 // Disegno sui canvas
 function disegna(event) {
+    event.preventDefault();
     let boxSize = larghezzaContenitore / larghezzaScelta;
 
     if (disegno) {
-      // Calcol le coordinate del mouse sulla griglia
-      const rect = canvas.getBoundingClientRect();
-      const x = event.clientX - rect.left;
-      const y = event.clientY - rect.top;
+        let x;
+        let y;
+        // Calcolo le coordinate del mouse sulla griglia
+        if (event.type == 'mousemove') {
+            // Calcolo le coordinate del mouse sulla griglia
+            const rect = canvas.getBoundingClientRect();
+            x = event.clientX - rect.left;
+            y = event.clientY - rect.top;
+        } else if (event.type === 'touchmove') {
+            // Calcolo le coordinate del touch sulla griglia
+            const rect = canvas.getBoundingClientRect();
+            x = event.touches[0].clientX - rect.left;
+            y = event.touches[0].clientY - rect.top;
+        }
+    
+        // Calcolo la riga e la colonna del quadrato in cui si trova il mouse
+        const colonna = Math.floor(x / boxSize);
+        const riga = Math.floor(y / boxSize);
   
-      // Calcolo la riga e la colonna del quadrato in cui si trova il mouse
-      const colonna = Math.floor(x / boxSize);
-      const riga = Math.floor(y / boxSize);
-  
-      // Disegno il quadrato pieno sulla posizione corrente del mouse
-      if (coloreSelezionato != null) {
-          contesto.fillStyle = coloreSelezionato;
-          contesto.fillRect(colonna * boxSize, riga * boxSize, boxSize, boxSize);
-      } else {
-        // Cancella il quadrato corrente
-        contesto.fillStyle = 'white';
-        contesto.fillRect(colonna * boxSize, riga * boxSize, boxSize, boxSize);
-    }
+        // Disegno il quadrato pieno sulla posizione corrente del mouse
+        if (coloreSelezionato != null) {
+            contesto.fillStyle = coloreSelezionato;
+            contesto.fillRect(colonna * boxSize, riga * boxSize, boxSize, boxSize);
+        } else {
+            // Cancella il quadrato corrente
+            contesto.fillStyle = 'white';
+            contesto.fillRect(colonna * boxSize, riga * boxSize, boxSize, boxSize);
+        }
     }
   }
 
@@ -130,8 +143,4 @@ function impostaLarghezza() {
 // Definisco l'altezza (quante righe)
 function impostaAltezza() {
     altezzaScelta = altezza.value;
-}
-
-function disegnaSuCanvas() {
-    
 }
