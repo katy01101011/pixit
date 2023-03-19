@@ -39,8 +39,11 @@ function aggiornaCanvas() {
 
 // Aggiungo gli event listener al contenitore per sapere quando il mouse viene rilasciato
 canvas.addEventListener('mousemove', disegna);
+canvas.addEventListener('touchmove', disegna);
 canvas.addEventListener('mousedown', inizioDisegno);
+canvas.addEventListener('touchstart', inizioDisegno);
 canvas.addEventListener('mouseup', fineDisegno);
+canvas.addEventListener('touchend', fineDisegno);
 canvas.addEventListener('mouseleave', fineDisegno);
 
 // Definisco il periodi del mouse schiacciato
