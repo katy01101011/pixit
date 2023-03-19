@@ -5,3 +5,8 @@
 .modal {
     z-index: 10000;
 }
+
+ul li {
+    cursor: pointer;
+    list-style: none;
+}

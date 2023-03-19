@@ -22,8 +22,10 @@
             </div>
             <!-- Input per altezza e larghezza -->
             <div class="col-6 d-flex justify-content-center align-items-center dimensioni">
+                <span>&harr;</span>
                 <input id="larghezza" class="mx-2 form-control" type="number" min="50" id="larghezza" placeholder="Larghezza es. 100" value="100" onchange="[impostaLarghezza(), nessunColore(), aggiornaCanvas()]">
                 <input id="altezza" class="mx-2 form-control" type="number" min="50" id="altezza" placeholder="Altezza es. 50" value="50" onchange="[impostaAltezza(), nessunColore(), aggiornaCanvas()]">
+                <span>&varr;</span>
             </div>
             <!-- Tasto reset -->
             <div class="col-3 d-flex justify-content-end align-items-center">
@@ -51,6 +53,49 @@
         </div>
     </div>
 </nav>
+<div class="section d-flex justify-content-center">
+    <button type="button" class="btn btn-info text-light mb-3 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        ?
+    </button>
+      
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Come si gioca?</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <h4 class="text-center">ATTENZIONE!</h4>
+              <p class="text-danger">Quando si cambia la dimensione della griglia, il disegno si resetta, quindi, non rimaneteci troppo male.</p>
+              <p>Ci sono due parametri numerici che si possono inserire per cambiare la dimensione della gruglia</p>
+              <ul>
+                <li>
+                    <span class="d-inline-block" style="width: 30px">&harr;</span>
+                    <span>RIGHE</span>
+                    <p>Puoi decidere quanti quadratini per riga mettere.</p>
+                    <p>Più quandratini metti, più piccoli saranno i pixel della griglia.</p>
+                    <p>La griglia rimarrà sempre della stessa larghezza, cambia solo il numero di quadratini per riga.</p>
+                </li>
+                <li>
+                    <span class="d-inline-block" style="width: 30px">&varr;</span>
+                    <span>COLONNE</span>
+                    <p>Qui invece puoi decidere la lunghezza della tua tela.</p>
+                    <p>Ti servirà se rimpicciolisci i quadratini, perchè l'altezza della tela verrà automaticamente ridotta di conseguenza.</p>
+                </li>
+              </ul>
+              <p>Dal menu puoi scaricare il tuo capolavoro, e già che ci sei, mettermi una stellina sulla repository del progetto :)</p>
+              <h6 class="text-center">BUON DIVERTIMENTO!!!</h6>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-info text-light">Ho capito <span class="h5">&#128516;</span><span>&#128077;</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+<!-- Button trigger modal -->
 <section id="contenitore-canvas" class="container p-0">
     <!-- Canvas -->
     <canvas id="canvas"></canvas>

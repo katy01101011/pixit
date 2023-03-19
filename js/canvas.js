@@ -49,11 +49,11 @@ canvas.addEventListener('mouseleave', fineDisegno);
 // Definisco il periodi del mouse schiacciato
 function inizioDisegno(event) {
     event.preventDefault();
-  disegno = true;
+    disegno = true;
 }
 function fineDisegno(event) {
     event.preventDefault();
-  disegno = false;
+    disegno = false;
 }
 
 // Disegno sui canvas
@@ -91,7 +91,7 @@ function disegna(event) {
             contesto.fillRect(colonna * boxSize, riga * boxSize, boxSize, boxSize);
         }
     }
-  }
+}
 
 // Reset tela
 function resetDisegno() {
@@ -130,8 +130,13 @@ function resetDisegno() {
 
 // Scarica il disegno
 function scaricaDisegno() {
-    const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-    window.location.href=image;
+    const image = canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.download = "disegno.png";
+    link.href = image;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 }
 
 // FUNZIONI
